@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starbucks Landingpage</title>
+    <link rel="shortcut icon" href="Assets/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section>
+        <div class="circle">
+
+        </div>
+        <header>
+            <a href="#"><img src="Assets/logo.png" class="logo" alt=""></a>
+            <div class="toggle"onclick="toggleMenu();"></div>
+            <ul class="navigation">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">What's new</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </header>
+        <div class="content">
+            <div class="textBox">
+                <h2>It's not just a coffee<br>It's <span>Starbucks</span></h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, saepe! Eaque vel nesciunt fugit in
+                nulla eligendi dignissimos ipsa necessitatibus temporibus.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="imgBox">
+                <img src="Assets/img1.png" alt="" class="Starbucks">
+            </div>
+        </div>
+        <ul class="thumb">
+            <li><img src="Assets/thumb1.png" onclick="imgSlider('Assets/img1.png');changeCircleColor('#017143')" alt=""></li>
+            <li><img src="Assets/thumb2.png" onclick="imgSlider('Assets/img2.png');changeCircleColor('#eb7495')" alt=""></li>
+            <li><img src="Assets/thumb3.png" onclick="imgSlider('Assets/img3.png');changeCircleColor('#d752b1')" alt=""></li>
+        </ul>
+        <ul class="sci">
+            <li><a href="#"><img src="Assets/facebook.png" alt=""></a></li>
+            <li><a href="#"><img src="Assets/twitter.png" alt=""></a></li>
+            <li><a href="#"><img src="Assets/instagram.png" alt=""></a></li>
+        </ul>
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>
