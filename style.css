@@ -1,10 +1,281 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+    overflow: hidden;
+    cursor: none;
+}
+
+/* ========== CSS VARIABLES ========== */
+:root {
+    --bg-primary: #fff;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --accent-color: #017143;
+    --accent-light: #23b87a;
+    --transition-speed: 0.5s;
+}
+
+/* ========== PRELOADER ========== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #017143, #23b87a);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-logo {
+    width: 120px;
+    animation: preloaderSpin 2s ease-in-out infinite, preloaderPulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes preloaderSpin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes preloaderPulse {
+    0% {
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
+    }
+}
+
+.preloader-text {
+    color: #fff;
+    font-size: 1.1em;
+    margin-top: 20px;
+    letter-spacing: 2px;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+/* ========== CUSTOM CURSOR ========== */
+.cursor {
+    width: 12px;
+    height: 12px;
+    background: #017143;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, background 0.3s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor.hover {
+    transform: translate(-50%, -50%) scale(2);
+    background: #fff;
+}
+
+.cursor-follower {
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(1, 113, 67, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease, border-color 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.cursor-follower.hover {
+    width: 60px;
+    height: 60px;
+    border-color: rgba(1, 113, 67, 0.8);
+}
+
+/* Hide cursor on mobile */
+@media (max-width: 991px) {
+
+    .cursor,
+    .cursor-follower {
+        display: none;
+    }
+
+    html,
+    body,
+    a,
+    button {
+        cursor: auto;
+    }
+}
+
+/* ========== KEYFRAME ANIMATIONS ========== */
+
+/* Hero entrance animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Floating animation for product image */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-15px) rotate(1deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(0deg);
+    }
+
+    75% {
+        transform: translateY(-20px) rotate(-1deg);
+    }
+}
+
+/* Circle pulse effect */
+@keyframes circlePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* Steam/vapor effect */
+@keyframes steam {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateY(-80px) translateX(10px) scale(1.5);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateY(-150px) translateX(-10px) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Logo spin on hover */
+@keyframes logoSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Nav link underline animation */
+@keyframes underlineSlide {
+    from {
+        width: 0;
+        left: 50%;
+    }
+
+    to {
+        width: 100%;
+        left: 0;
+    }
+}
+
+/* Thumbnail bounce */
+@keyframes thumbnailBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 section {
@@ -15,7 +286,8 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--bg-primary);
+    transition: background-color var(--transition-speed) ease;
 }
 
 header {
@@ -32,12 +304,18 @@ header {
 header .logo {
     position: relative;
     max-width: 80px;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: scaleIn 0.8s ease-out;
+}
+
+header .logo:hover {
+    animation: logoSpin 0.8s ease-in-out;
 }
 
 header ul {
     position: relative;
     display: flex;
-
+    animation: fadeInRight 0.8s ease-out 0.3s both;
 }
 
 header ul li {
@@ -46,14 +324,32 @@ header ul li {
 
 header ul li a {
     display: inline-block;
-    color: #333;
+    color: var(--text-primary);
     font-weight: 400;
     margin-left: 40px;
     text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+header ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #017143, #23b87a);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
 }
 
 header ul li a:hover {
     color: #017143;
+}
+
+header ul li a:hover::after {
+    width: 100%;
 }
 
 .content {
@@ -67,41 +363,69 @@ header ul li a:hover {
 .content .textBox {
     position: relative;
     max-width: 55%;
-
+    animation: fadeInLeft 1s ease-out 0.4s both;
 }
 
 .content .textBox h2 {
-    color: #333;
+    color: var(--text-primary);
     font-size: 4em;
     line-height: 1.6em;
     font-weight: 500;
+    transition: color var(--transition-speed) ease;
 }
 
 .content .textBox h2 span {
     color: #017143;
     font-size: 1.4em;
     font-weight: 900;
+    background: linear-gradient(135deg, #017143, #23b87a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .content .textBox p {
-    color: #333;
+    color: var(--text-secondary);
     font-size: 1.2em;
+    animation: fadeInUp 1s ease-out 0.6s both;
+    transition: color var(--transition-speed) ease;
 }
 
 .content .textBox a {
     display: inline-block;
     margin-top: 20px;
-    padding: 8px 20px;
-    background: #017143;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #017143, #23b87a);
     color: #fff;
     border-radius: 40px;
     font-weight: 500;
     letter-spacing: 1px;
     text-decoration: none;
+    animation: fadeInUp 1s ease-out 0.8s both;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(1, 113, 67, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
-.textBox a:hover {
-    background: #23b87a;
+.content .textBox a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.content .textBox a:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(1, 113, 67, 0.4);
+}
+
+.content .textBox a:hover::before {
+    left: 100%;
 }
 
 .content .imgBox {
@@ -110,10 +434,42 @@ header ul li a:hover {
     justify-content: flex-end;
     padding-right: 50px;
     padding-top: 50px;
+    position: relative;
+    animation: fadeInRight 1s ease-out 0.5s both;
 }
 
 .content .imgBox img {
     max-width: 400px;
+    animation: float 6s ease-in-out infinite;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
+}
+
+.content .imgBox img.changing {
+    opacity: 0;
+    transform: scale(0.8) rotate(5deg);
+}
+
+/* Steam effect container */
+.content .imgBox::before,
+.content .imgBox::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: steam 3s ease-out infinite;
+    filter: blur(8px);
+}
+
+.content .imgBox::after {
+    left: 55%;
+    animation-delay: 1s;
+    width: 15px;
+    height: 15px;
 }
 
 .thumb {
@@ -129,11 +485,11 @@ header ul li a:hover {
     display: inline;
     margin: 0 20px;
     cursor: pointer;
-    transition: 0.6s;
+    transition: 0.5s;
 }
 
 .thumb li:hover {
-    transform: translateY(-16px);
+    transform: translateY(-15px);
 }
 
 .thumb li img {
@@ -142,7 +498,7 @@ header ul li a:hover {
 
 .sci {
     position: absolute;
-    top:50%;
+    top: 50%;
     right: 30px;
     transform: translateY(-50%);
     display: flex;
@@ -159,7 +515,12 @@ header ul li a:hover {
     display: inline-block;
     margin: 5px 0;
     transform: scale(0.7);
-    filter:invert(1);
+    filter: invert(1);
+    transition: all 0.3s ease;
+}
+
+.sci li:hover a {
+    transform: scale(0.9);
 }
 
 .circle {
@@ -168,11 +529,13 @@ header ul li a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #017143;
+    background: linear-gradient(135deg, #017143, #23b87a);
     clip-path: circle(700px at right 900px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: circlePulse 8s ease-in-out infinite;
 }
 
-@media (max-width: 991px){
+@media (max-width: 991px) {
     header {
         padding: 20px;
     }
@@ -193,7 +556,7 @@ header ul li a:hover {
         background: url(Assets/menu.png);
         background-size: 30px;
         background-position: center;
-        background-repeat:no-repeat;
+        background-repeat: no-repeat;
         filter: invert(1);
         z-index: 11;
     }
@@ -204,7 +567,7 @@ header ul li a:hover {
         background: url(Assets/close.png);
         background-size: 25px;
         background-position: center;
-        background-repeat:no-repeat;
+        background-repeat: no-repeat;
     }
 
     header ul.navigation.active {
@@ -220,7 +583,7 @@ header ul li a:hover {
         background: #fff;
         z-index: 10;
     }
-    
+
     header ul li a {
         font-size: 1.5em;
         margin: 5px 0;
